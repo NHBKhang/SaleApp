@@ -1,6 +1,10 @@
 def get_catogories():
     return [
         {
+            'id': 0,
+            'name': 'Trang chủ'
+        },
+        {
             'id': 1,
             'name': 'Phone'
         },
@@ -11,8 +15,8 @@ def get_catogories():
         }]
 
 
-def get_products():
-    return [
+def get_products(kw=None):
+    products = [
         {
             'id': 1,
             'name': 'IPhone 13',
@@ -38,9 +42,13 @@ def get_products():
         },
         {
             'id': 1,
-            'name': 'IPhone 13',
+            'name': 'Samsung',
             'price': 20000000,
             'description': 'Iphone 13',
             'image': 'https://cdn.hoanghamobile.com/i/preview/Uploads/2021/09/15/image-removebg-preview-12.png'
 
         }]
+    if kw:
+        products = [p for p in products if kw.lower() in p['name'].lower()]
+
+    return products

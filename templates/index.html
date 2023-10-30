@@ -16,21 +16,21 @@
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="javascript:void(0)">Bán hàng online</a>
+        <a class="navbar-brand" href="javascript:void(0)">BÁN HÀNG ĐIỆN TỬ</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 {% for c in catogories %}
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">{{ c.name }}</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">{{ c.name }}</a>
+                    </li>
                 {% endfor %}
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search">
-                <button class="btn btn-primary" type="button">Search</button>
+            <form class="d-flex" action="/" method="get">
+                <input class="form-control me-2" placeholder="Search..." type="text" name="kw">
+                <button class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
     </div>
@@ -38,19 +38,25 @@
 <section class="container">
     <div class="row">
         {% for x in products %}
-        <div class="col-xs-12 col-md-4">
-            <div class="card">
-                <img class="card-img-top" src="{{ x.image }}" alt="Card image">
-                <div class="card-body">
-                    <h4 class="card-title">{{ x.name }}</h4>
-                    <p class="card-text">{{ x.description }}</p>
-                    <a href="#" class="btn btn-primary">Xem Chi Tiết</a>
-                    <a href="#" class="btn btn-danger">Đặt hàng</a>
+            <div class="col-xs-12 col-md-3">
+                <div class="card">
+                    <img class="card-img-top" src="{{ x.image }}" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ x.name }}</h4>
+                        <p class="card-text">{{ x.description }}</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="btn btn-primary me-1">Chi Tiết</a>
+                            <a href="#" class="btn btn-danger">Đặt hàng</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 </section>
+<footer class="mt-4 p-5 bg-primary text-white rounded">
+    <h1>Nguyễn Hà Bảo Khang</h1>
+    <p>&copy;2023</p>
+</footer>
 </body>
 </html>
