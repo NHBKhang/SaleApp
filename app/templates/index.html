@@ -22,14 +22,16 @@
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
-                {% for c in catogories %}
+                {% for c in categories %}
                     <li class="nav-item">
                         <a class="nav-link" href="javascript:void(0)">{{ c.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
             <form class="d-flex" action="/" method="get">
-                <input class="form-control me-2" placeholder="Search..." type="text" name="kw">
+                <label>
+                    <input class="form-control me-2" placeholder="Search..." type="text" name="kw">
+                </label>
                 <button class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
@@ -37,8 +39,8 @@
 </nav>
 <section class="container">
     <div class="row">
-        {% for x in products %}
-            <div class="col-xs-12 col-md-3">
+        <div class="col-xs-12 col-md-3">
+            {% for x in products %}
                 <div class="card">
                     <img class="card-img-top" src="{{ x.image }}" alt="Card image">
                     <div class="card-body">
@@ -50,8 +52,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 </section>
 <footer class="mt-4 p-5 bg-primary text-white rounded">
