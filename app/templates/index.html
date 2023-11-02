@@ -22,6 +22,9 @@
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)">Trang chủ</a>
+                </li>
                 {% for c in categories %}
                     <li class="nav-item">
                         <a class="nav-link" href="javascript:void(0)">{{ c.name }}</a>
@@ -29,7 +32,7 @@
                 {% endfor %}
             </ul>
             <form class="d-flex" action="/" method="get">
-                <label>
+                <label class="me-1">
                     <input class="form-control me-2" placeholder="Search..." type="text" name="kw">
                 </label>
                 <button class="btn btn-primary" type="submit">Search</button>
@@ -39,21 +42,19 @@
 </nav>
 <section class="container">
     <div class="row">
-        <div class="col-xs-12 col-md-3">
-            {% for x in products %}
-                <div class="card">
-                    <img class="card-img-top" src="{{ x.image }}" alt="Card image">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ x.name }}</h4>
-                        <p class="card-text">{{ x.description }}</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="btn btn-primary me-1">Chi Tiết</a>
-                            <a href="#" class="btn btn-danger">Đặt hàng</a>
-                        </div>
+        {% for p in products %}
+            <div class="card col-xs-12 col-md-3 mt-1">
+                <img class="card-img-top" src="{{ p.image }}" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">{{ p.name }}</h4>
+                    <p class="card-text">{{ p.description }}</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="btn btn-primary me-1">Chi Tiết</a>
+                        <a href="#" class="btn btn-danger">Đặt hàng</a>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 </section>
 <footer class="mt-4 p-5 bg-primary text-white rounded">

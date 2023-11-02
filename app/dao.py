@@ -1,9 +1,5 @@
-def get_catogories():
+def get_categories():
     return [
-        {
-            'id': 0,
-            'name': 'Trang chủ'
-        },
         {
             'id': 1,
             'name': 'Phone'
