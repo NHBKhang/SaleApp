@@ -1,7 +1,5 @@
-from flask import Flask, render_template, request
-from app import dao
-
-app = Flask(__name__)
+from flask import render_template, request
+from app import dao, app
 
 
 @app.route('/')
