@@ -11,7 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"></script>
-
+    <link rel="icon" href="https://static.thenounproject.com/png/1180247-200.png">
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/style.css">
+    <script type="text/javascript" src="../static/script.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -23,12 +25,12 @@
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Trang chủ</a>
+                    <a class="nav-link" href="/">Trang chủ</a>
                 </li>
                 {% for c in categories %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">{{ c.name }}</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)">{{ c.name }}</a>
+                </li>
                 {% endfor %}
             </ul>
             <form class="d-flex" action="/" method="get">
@@ -43,17 +45,17 @@
 <section class="container">
     <div class="row">
         {% for p in products %}
-            <div class="card col-xs-12 col-md-3 mt-1">
-                <img class="card-img-top" src="{{ p.image }}" alt="Card image">
-                <div class="card-body">
-                    <h4 class="card-title">{{ p.name }}</h4>
-                    <p class="card-text">{{ p.description }}</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary me-1">Chi Tiết</a>
-                        <a href="#" class="btn btn-danger">Đặt hàng</a>
-                    </div>
-                </div>
+        <div class="card col-xs-12 col-md-3 mt-1">
+            <img class="card-img-top h-100" src="{{ p.image }}" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">{{ p.name }}</h4>
+                <p class="card-text">{{ p.description }}</p>
             </div>
+            <div class="d-flex justify-content-center card-footer">
+                <a href="#" class="btn btn-primary me-1">Chi Tiết</a>
+                <a href="#" class="btn btn-danger">Đặt hàng</a>
+            </div>
+        </div>
         {% endfor %}
     </div>
 </section>
@@ -61,5 +63,8 @@
     <h1>Nguyễn Hà Bảo Khang</h1>
     <p>&copy;2023</p>
 </footer>
+<div onclick="scrollToTop()" role="button" id="return" title="Trở về đầu trang">
+    <button type="button">^</button>
+</div>
 </body>
 </html>

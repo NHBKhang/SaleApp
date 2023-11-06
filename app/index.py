@@ -6,7 +6,7 @@ from app import dao, app
 def index():
     kw = request.args.get('kw')
     cat = dao.get_categories()
-    prod = dao.get_products(kw)
+    prod = dao.get_products(keyword=kw)
 
     return render_template('index.html', categories=cat, products=prod)
 

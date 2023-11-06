@@ -1,0 +1,29 @@
+
+html{
+    scroll-behavior: smooth;
+}
+#return>button{
+    font-size: 2.5rem;
+    color: rgb(75, 75, 243);
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    display: inline;
+    padding: 0 35px 50px 10px;
+    background-color: rgb(200, 200, 200, 0.75);
+    opacity: 0.8;
+    text-align: justify;
+    text-transform: none;
+    text-shadow: 3px 1px lightskyblue;
+    z-index: 1000;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin: .75rem;
+}
+#return>button:hover {
+    background-color: rgb(205, 220, 220);
+    color: dodgerblue;
+}
