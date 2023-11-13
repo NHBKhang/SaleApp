@@ -1,13 +1,14 @@
+{% if current_user.is_authenticated %}
+
 {% extends 'admin/master.html' %}
 
 {% block body %}
 
-
-{% if current_user.is_authenticated %}
 <h1 class="text-center text-success">CHÀO MỪNG BẠN ĐẾN TRANG QUẢN TRỊ!</h1>
 <h2 class="text-info">Chào {{ current_user.name }}!</h2>
+
+{% endblock %}
+
 {% else %}
 {% include 'admin/login.html' %}
 {% endif %}
-
-{% endblock %}

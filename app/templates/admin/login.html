@@ -1,12 +1,26 @@
-<h1 class="text-center text-success">ĐĂNG NHẬP QUẢN TRỊ</h1>
-<form method="post" action="/admin/login">
-    <div class="mb-3 mt-3">
-        <label for="username" class="form-label">Tên đăng nhập:</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập">
-    </div>
-    <div class="mb-3">
-        <label for="pwd" class="form-label">Mật khẩu:</label>
-        <input type="password" class="form-control" id="pwd" name="password" placeholder="Mật khẩu">
-    </div>
-    <button type="submit" class="btn btn-primary">Đăng nhập</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    {% include 'headtag.html' %}
+</head>
+<body>
+<div class="container">
+    <br>
+    <h1 class="text-center text-success">ĐĂNG NHẬP QUẢN TRỊ</h1>
+    <form method="post" action="/admin/login">
+        <div class="mb-3 mt-3">
+            <label for="username" class="form-label">Tên đăng nhập:</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập">
+        </div>
+        <div class="mb-3">
+            <label for="pwd" class="form-label">Mật khẩu:</label>
+            <input type="password" class="form-control" id="pwd" name="password" placeholder="Mật khẩu">
+        </div>
+        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+    </form>
+</div>
+
+</body>
+</html>
