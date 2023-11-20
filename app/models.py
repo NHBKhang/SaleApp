@@ -1,7 +1,13 @@
 from app import app, db
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, Boolean
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Boolean, Enum, DateTime
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
+import enum
+
+
+class UserRole(enum.Enum):
+    USER = 1
+    ADMIN = 2
 
 
 class User(db.Model, UserMixin):
@@ -14,6 +20,7 @@ class User(db.Model, UserMixin):
     active = Column(Boolean, default=True)
     avatar = Column(String(100),
                     default='https://res.cloudinary.com/dxxwcby8l/image/upload/v1688179242/hclq65mc6so7vdrbp7hz.jpg')
+    role = Column(Enum(UserRole), default=UserRole.USER)
 
     def __str__(self):
         return self.name
@@ -49,7 +56,8 @@ if __name__ == '__main__':
         db.create_all()
 
         import hashlib
-        u = User(name='Admin', username='admin', password=str(hashlib.md5('123456'.encode('utf-8')).hexdigest()))
+        u = User(name='Admin', username='admin', password=str(hashlib.md5('123456'.encode('utf-8')).hexdigest()),
+                 role=UserRole.ADMIN)
         db.session.add(u)
         db.session.commit()
 

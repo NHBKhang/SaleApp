@@ -18,6 +18,14 @@
         </div>
         {% endfor %}
     </div>
+    <br>
+    <div style="align-items: center" class="d-inline-flex">
+        <ul class="pagination mt-1">
+            {% for i in range(pages) %}
+            <li class="page-item"><a class="page-link" href="/?page={{ i + 1 }}">{{ i + 1 }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 </section>
 
 {% endblock %}

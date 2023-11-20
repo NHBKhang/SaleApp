@@ -1,15 +1,23 @@
+import math
 from flask import render_template, request, redirect
-from app import dao, app, login
+import dao
+from app import app, login
 from flask_login import login_user
 
 
 @app.route('/')
 def index():
     kw = request.args.get('kw')
-    cat = dao.get_categories()
-    prod = dao.get_products(keyword=kw)
+    cate_id = request.args.get('cate_id')
+    page = request.args.get('page')
 
-    return render_template('index.html', categories=cat, products=prod)
+    cates = dao.get_categories()
+    prods = dao.get_products(kw, cate_id, page)
+
+    num = dao.count_product()
+    page_size = app.config['PAGE_SIZE']
+
+    return render_template('index.html', categories=cates, products=prods, pages=math.ceil(num / page_size))
 
 
 @app.route("/admin/login", methods=['GET', 'POST'])

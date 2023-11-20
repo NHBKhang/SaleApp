@@ -11,7 +11,7 @@
                 </li>
                 {% for c in categories %}
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">{{ c.name }}</a>
+                    <a class="nav-link" href="/?cate_id={{c.id}}">{{ c.name }}</a>
                 </li>
                 {% endfor %}
             </ul>
