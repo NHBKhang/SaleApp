@@ -37,14 +37,12 @@ class MyStatsView(BaseView):
         return self.render('admin/stats.html')
 
 
-class LogoutView(AuthenticatedUser):
-    @expose("/")
-    def index(self):
-        logout_user()
-        return redirect('/admin')
+@app.route('/admin/logout')
+def logout_admin():
+    logout_user()
+    return redirect('/admin')
 
 
 admin.add_view(MyCategoryView(Category, db.session))
 admin.add_view(MyProductView(Product, db.session))
 admin.add_view(MyStatsView(name='Thống kê báo cáo'))
-admin.add_view(LogoutView(name='Đăng xuất'))
