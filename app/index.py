@@ -25,8 +25,8 @@ def login_admin():
     if request.method == 'POST':
         username = request.form.get("username")
         password = request.form.get("password")
-        from app.models import User
-        user = User.query.filter(username == username, password == password).first()
+
+        user = dao.auth_user(username=username, password=password)
         if user:
             login_user(user=user)
 

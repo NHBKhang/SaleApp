@@ -33,6 +33,7 @@ def count_product():
 
 
 def auth_user(username, password):
+    import hashlib
     password = str(hashlib.md5(password.encode('utf-8')).hexdigest())
 
     return User.query.filter(User.username.__eq__(username),
