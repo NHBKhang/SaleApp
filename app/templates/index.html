@@ -2,30 +2,40 @@
 
 {% block content %}
 
-<section class="container">
-    <div class="row">
-        {% for p in products %}
-        <div class="card col-xs-12 col-md-3 mt-1">
-            <img class="card-img-top h-100" src="{{ p.image }}" alt="Card image">
-            <div class="card-body">
-                <h4 class="card-title">{{ p.name }}</h4>
-                <p class="card-text">{{ p.description }}</p>
+    <section class="container mt-5 mb-5">
+
+        {% if products %}
+            <div class="row">
+                {% for p in products %}
+                    <div class="card col-xs-12 col-md-3 mt-1">
+                        <div class="h-100">
+                            <img class="card-img-top mt-2" src="{{ p.image }}" alt="Card image">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">{{ p.name }}</h4>
+                        </div>
+                        <div class="d-flex justify-content-around card-footer pe-0 ps-0">
+                            <a href="/products/{{ p.id }}" class="btn btn-primary p-2">Chi Tiết</a>
+                            <a href="#" class="btn btn-danger p-2 ">Đặt hàng</a>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-            <div class="d-flex justify-content-center card-footer">
-                <a href="#" class="btn btn-primary me-1">Chi Tiết</a>
-                <a href="#" class="btn btn-danger">Đặt hàng</a>
+            <br>
+            <div class="d-flex align-items-center justify-content-center">
+                <ul class="pagination mt-1">
+                    {% for i in range(pages) %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="/?page={{ i + 1 }}&cate_id={{ cate_id }}&kw={{ kw }}">{{ i + 1 }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
-        {% endfor %}
-    </div>
-    <br>
-    <div style="align-items: center" class="d-inline-flex">
-        <ul class="pagination mt-1">
-            {% for i in range(pages) %}
-            <li class="page-item"><a class="page-link" href="/?page={{ i + 1 }}">{{ i + 1 }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-</section>
+
+        {% else %}
+            <p class="alert alert-info mt-2">KHÔNG có sản phẩm nào!!!</p>
+        {% endif %}
+
+    </section>
 
 {% endblock %}

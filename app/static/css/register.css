@@ -1,0 +1,33 @@
+#home, #back {
+    position: absolute;
+    top: 20px;
+    border: greenyellow solid 3px;
+    padding: 5px;
+    width: 40px;
+    z-index: 1000;
+    background-color: #57b846;
+}
+
+#home i:hover, #back i:hover {
+    color: #57b846;
+}
+
+#home:hover, #back:hover {
+    background: greenyellow;
+    border-color: #57b846;
+}
+
+#home i, #back i {
+    font-size: 1.5em;
+    color: greenyellow;
+    width: 100%;
+    height: 100%;
+}
+
+#home {
+    right: 10%;
+}
+
+#back {
+    left: 10%;
+}
