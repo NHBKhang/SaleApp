@@ -1,7 +1,7 @@
 import math
-from flask import render_template, request, redirect, session
+from flask import render_template, request, redirect, session, jsonify
 from app import app, login, dao, utils
-from flask_login import login_user, login_required
+from flask_login import login_user, login_required, logout_user
 
 
 @app.route('/')
@@ -12,7 +12,7 @@ def index():
     page = 1 if page is None else page
 
     prods = dao.get_products(kw, cate_id, page)
-    num = dao.count_product(kw, cate_id)
+    num = dao.count_products(kw, cate_id)
 
     return render_template('index.html', products=prods,
                            kw=kw if kw else "", cate_id=cate_id if cate_id else "",
@@ -21,7 +21,8 @@ def index():
 
 @app.route('/products/<id>')
 def details(id):
-    return render_template('details.html', product=dao.get_product_by_id(id))
+    return render_template('details.html', product=dao.get_product_by_id(id),
+                           comments=dao.get_comments_by_product(id))
 
 
 @app.route("/login", methods=['get', 'post'])
@@ -46,11 +47,11 @@ def add_comment(id):
         c = dao.add_comment(product_id=id, content=request.json.get('content'))
     except Exception as ex:
         print(ex)
-        return jsonify({'status': 500, 'err_msg': "..."})
-    else:
+        return jsonify({'status': 500, 'err_msg': "Task failed successfully"})
+    finally:
         return jsonify({'status': 200, 'comment': {'content': c.content,
                                                    'created_date': c.created_date,
-                                                   'user': {'avatar': c.user.avatar}}})
+                                                   'user': {'avatar': dao.get_user_by_id(c.user_id).avatar}}})
 
 
 @app.route('/logout')
@@ -71,7 +72,8 @@ def register_user():
             try:
                 dao.add_user(name=request.form.get('name'),
                              username=request.form.get('username'),
-                             password=password, avatar=request.files.get('avatar'))
+                             email=request.form.get('email'),
+                             password=password)
             except Exception as ex:
                 print(str(ex))
                 err_msg = 'Hệ thống đang bị lỗi!'
@@ -94,6 +96,30 @@ def login_admin():
             login_user(user=user)
 
     return redirect("/admin")
+
+
+@app.route('/api/cart', methods=['post'])
+def add_to_cart():
+    data = request.json
+
+    cart = session.get('cart')
+    if cart is None:
+        cart = {}
+
+    id = str(data.get("id"))
+    if id in cart:  # sp da co trong gio
+        cart[id]['quantity'] += 1
+    else:  # sp chua co trong gio
+        cart[id] = {
+            "id": id,
+            "name": data.get('name'),
+            "price": data.get('price'),
+            "quantity": 1
+        }
+
+    session['cart'] = cart
+
+    return jsonify(utils.count_cart(cart))
 
 
 @app.route('/api/cart/<product_id>', methods=['put'])
@@ -124,8 +150,9 @@ def delete_cart(product_id):
 def pay():
     try:
         dao.add_receipt(session.get('cart'))
-    except:
-        return jsonify({'status': 500, 'err_msg': "..."})
+    except Exception as e:
+        print(e)
+        return jsonify({'status': 500, 'err_msg': "failed!!!"})
     else:
         del session['cart']
         return jsonify({'status': 200})

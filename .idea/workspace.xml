@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="498ea42e-021f-4238-a528-334ea9aea7e5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/static/js/cart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/cart.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/dao.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/dao.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/admin/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/admin/stats.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/admin/stats.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/layout/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/layout/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/layout/headtag.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/layout/headtag.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +32,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -74,7 +89,7 @@
       <recent name="C:\Users\KHANG\Desktop\SaleApp\app\static\css" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.index">
+  <component name="RunManager" selected="Python.models">
     <configuration name="SaleApp" type="PythonConfigurationType" factoryName="Python">
       <module name="SaleApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -143,8 +158,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.index" />
         <item itemvalue="Python.models" />
+        <item itemvalue="Python.index" />
       </list>
     </recent_temporary>
   </component>
@@ -166,6 +181,8 @@
       <workItem from="1709368274717" duration="2104000" />
       <workItem from="1709370589838" duration="4703000" />
       <workItem from="1709381034516" duration="4449000" />
+      <workItem from="1709451680042" duration="7804000" />
+      <workItem from="1709474606339" duration="1328000" />
     </task>
     <servers />
   </component>
@@ -173,7 +190,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SaleApp$models.coverage" NAME="models Coverage Results" MODIFIED="1709368888485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
-    <SUITE FILE_PATH="coverage/SaleApp$index.coverage" NAME="index Coverage Results" MODIFIED="1709383480041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/SaleApp$models.coverage" NAME="models Coverage Results" MODIFIED="1709475222409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/SaleApp$index.coverage" NAME="index Coverage Results" MODIFIED="1709474674809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
   </component>
 </project>

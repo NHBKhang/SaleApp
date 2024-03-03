@@ -17,26 +17,31 @@
             </div>
         </div>
 
-        {% if current_user.is_authenticated %}
-            <div class="form-group">
-                <textarea class="form-control" rows="5" id="comment" name="text"
+        <div class="mt-5">
+            {% if current_user.is_authenticated %}
+                <div class="form-group">
+                <textarea class="form-control" rows="3" id="comment" name="text"
                           placeholder="Nhập nội dung bình luận..."></textarea>
-                <input type="button" onclick="addComment({{ product.id }})" value="Thêm bình luận"
-                       class="btn btn-info mt-1"/>
-            </div>
-        {% else %}
-            <p class="mt-5 alert alert-success">Vui lòng <a class="text-info" href="/login?next=/products/{{ product.id }}">đăng nhập</a> để bình luận!</p>
-        {% endif %}
+                    <input type="button" onclick="addComment({{ product.id }})" value="Thêm bình luận"
+                           class="btn btn-info mt-1 text-white"/>
+                </div>
+            {% else %}
+                <p class="alert alert-success">Vui lòng
+                    <a class="text-info" href="/login?next=/products/{{ product.id }}">
+                        đăng nhập</a> để bình luận!</p>
+            {% endif %}
+        </div>
 
         <div class="mt-2" id="comments">
             {% for c in comments %}
                 <div class="row alert alert-info">
                     <div class="col-md-1 col-xs-4">
-                        <img src="{{ c.user.avatar }}" class="img-fluid rounded"/>
+                        <img src="{{ c.user.avatar }}" class="img-fluid rounded-circle"/>
                     </div>
                     <div class="col-md-11 col-xs-8">
-                        <p><strong>{{ c.content }}</strong></p>
-                        <p>Bình luận lúc: <span class="date">{{ c.created_date }}</span></p>
+                        <p><strong>{{ c.user.name }}</strong></p>
+                        <p>{{ c.content }}</p>
+                        <p>Bình luận vào: <span class="date">{{ c.created_date }}</span></p>
                     </div>
                 </div>
             {% endfor %}

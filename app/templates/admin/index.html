@@ -7,6 +7,62 @@
         <h1 class="text-center text-success">CHÀO MỪNG BẠN ĐẾN TRANG QUẢN TRỊ!</h1>
         <h2 class="text-info">Chào {{ current_user.name }}!</h2>
 
+        <div class="row">
+        <div class="col-md-5 col-xs-12">
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Thể loại</th>
+                    <th>Số lượng</th>
+                </tr>
+                {% for s in stats %}
+                    <tr>
+                        <td>{{ s[0] }}</td>
+                        <td>{{ s[1] }}</td>
+                        <td>{{ s[2] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-7 col-xs-12">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            let data = [];
+            let labels = [];
+
+            {% for s in stats %}
+                data.push({{s[2]}})
+                labels.push('{{s[1]}}')
+            {% endfor %}
+
+            window.onload = function () {
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Số lượng',
+                            data: data,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
+
     {% endblock %}
 
 {% else %}

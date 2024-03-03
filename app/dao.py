@@ -1,5 +1,8 @@
-from app.models import Category, Product, User
-from app import app
+from app.models import *
+from app import app, db
+from sqlalchemy import func
+import hashlib
+from flask_login import current_user
 
 
 def get_categories():
@@ -29,7 +32,7 @@ def get_user_by_id(user_id):
     return User.query.get(user_id)
 
 
-def count_product(keyword=None, cate_id=None):
+def count_products(keyword=None, cate_id=None):
     products = Product.query
 
     if keyword:
@@ -42,7 +45,6 @@ def count_product(keyword=None, cate_id=None):
 
 
 def auth_user(username, password):
-    import hashlib
     password = str(hashlib.md5(password.encode('utf-8')).hexdigest())
 
     return User.query.filter(User.username.__eq__(username),
@@ -51,7 +53,7 @@ def auth_user(username, password):
 
 def add_receipt(cart):
     if cart:
-        receipt = Receipt(user=current_user)
+        receipt = Receipt(user_id=current_user.id)
         db.session.add(receipt)
 
         for c in cart.values():
@@ -61,9 +63,9 @@ def add_receipt(cart):
         db.session.commit()
 
 
-def add_user(name, username, password, avatar):
+def add_user(name, username, password, email, avatar=None):
     password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
-    u = User(name=name, username=username, password=password)
+    u = User(name=name, username=username, password=password, email=email)
 
     if avatar:
         res = cloudinary.uploader.upload(avatar)
@@ -93,16 +95,36 @@ def revenue_mon_stats(year=2024):
     return query.all()
 
 
+def count_frequency():
+    return db.session.query(Category.id, Category.name,
+                            func.count(Product.id)).join(Product,
+                                                         Product.category_id == Category.id, isouter=True) \
+        .group_by(Category.id).all()
+
+
 def get_product_by_id(id):
     return Product.query.get(id)
 
 
 def get_comments_by_product(product_id):
-    return Comment.query.filter(Comment.product_id.__eq__(product_id)).all()
+    comments = []
+    for c in Comment.query.filter(Comment.product_id.__eq__(product_id)).all():
+        u = get_user_by_id(c.user_id)
+        comments.append({
+            'id': c.id,
+            'content': c.content,
+            'created_date': c.created_date,
+            'user': {
+                'name': u.name,
+                'avatar': u.avatar
+            }
+        })
+
+    return comments
 
 
 def add_comment(product_id, content):
-    c = Comment(product_id=product_id, content=content, user=current_user)
+    c = Comment(product_id=product_id, content=content, user_id=current_user.id)
     db.session.add(c)
     db.session.commit()
 

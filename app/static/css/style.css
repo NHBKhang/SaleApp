@@ -51,7 +51,7 @@ footer .container a:hover > .fa-brands.fa-youtube {
 }
 /*bs5 class*/
 .dropdown-item:hover{
-    background: black;
+    background: grey;
 }
 
 .bg-header {

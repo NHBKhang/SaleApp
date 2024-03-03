@@ -1,5 +1,114 @@
 {% extends 'admin/master.html' %}
 
 {% block body %}
-<h1 class="text-center text-info">THÔNG KÊ BÁO CÁO</h1>
+    <h1 class="text-center text-info">THỐNG KÊ BÁO CÁO</h1>
+
+    <div class="row">
+        <div class="col-md-5 col-xs-12">
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Doanh thu</th>
+                </tr>
+                {% for s in stats %}
+                    <tr>
+                        <td>{{ s[0] }}</td>
+                        <td>{{ s[1] }}</td>
+                        <td>{{ "{:,.0f}".format(s[2]) }} VNĐ</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-7 col-xs-12">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 col-xs-12">
+            <table class="table">
+                <tr>
+                    <th>Tháng</th>
+                    <th>Tổng doanh thu</th>
+
+                </tr>
+                {% for s in mon_stats %}
+                    <tr>
+                        <td>{{ s[0] }}</td>
+                        <td>{{ "{:,.0f}".format(s[1]) }} VNĐ</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-7 col-xs-12">
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let data = [];
+        let labels = [];
+
+        let mData = [];
+        let mLabels = [];
+
+        {% for s in stats %}
+            data.push({{s[2]}})
+            labels.push('{{s[1]}}')
+        {% endfor %}
+
+        {% for s in mon_stats %}
+            mData.push({{s[1]}})
+            mLabels.push({{s[0]}})
+        {% endfor %}
+
+        window.onload = function () {
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '# Doanh thu',
+                        data: data,
+                        borderWidth: 1,
+                        backgroundColor: ['red', 'green', 'blue', 'gold', 'brown']
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            const ctx2 = document.getElementById('myChart2');
+
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: mLabels,
+                    datasets: [{
+                        label: '# Doanh thu',
+                        data: mData,
+                        borderWidth: 1,
+                        backgroundColor: ['red', 'green', 'blue', 'gold', 'brown']
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
 {% endblock %}
